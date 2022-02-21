@@ -7,6 +7,7 @@ class TicTacToe:
 
     def __init__(self):
         self.board = []
+        self.player = self.getFirstPlayer
         
 
     def createBoard(self):
@@ -21,9 +22,11 @@ class TicTacToe:
 
     #checking for a winner 
     def chekWinner(self,mark):
-        win = True
+        print(mark)
+        
         #checking rows
         for i in range(3):
+            win = True
             for j in range(3):
                 if self.board[i][j] != mark:
                     win = False
@@ -32,8 +35,9 @@ class TicTacToe:
             if win : return True
         
         #checking columns
-        win = True
+        
         for i in range(3):
+            win = True
             for j in range(3):
                 if self.board[j][i] != mark:
                     win =  False
@@ -84,7 +88,7 @@ class TicTacToe:
     def play(self):
         self.createBoard()
 
-        if (0 == 0):
+        if (self.player == 0):
             mark = 'X'
         else : 
             mark = 'O'
