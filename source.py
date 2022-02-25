@@ -1,29 +1,35 @@
 import random
-import flask_restful
 
-from sqlalchemy import true 
 
 class TicTacToe:
 
     def __init__(self):
         self.board = []
+        self.player = self.getFirstPlayer()
+        self.mark = self.getMark()
         
 
     def createBoard(self):
         self.board = [['-' for element in range(3)] for element in range(3)]
     
-    def getFirstPlayer():
+    def resetBoard(self):
+        self.board = [['-' for element in range(3)] for element in range(3)]
+
+    def getFirstPlayer(self):
         return random.randint(0, 1)
     
     def placeMark(self ,x , y , mark):
         self.board[x][y] = mark 
+        #swapping playersx
     
 
     #checking for a winner 
     def chekWinner(self,mark):
-        win = True
+        print(mark)
+        
         #checking rows
         for i in range(3):
+            win = True
             for j in range(3):
                 if self.board[i][j] != mark:
                     win = False
@@ -32,8 +38,9 @@ class TicTacToe:
             if win : return True
         
         #checking columns
-        win = True
+        
         for i in range(3):
+            win = True
             for j in range(3):
                 if self.board[j][i] != mark:
                     win =  False
@@ -68,8 +75,8 @@ class TicTacToe:
         return True
 
 
-    def switchPlayer(self, mark):
-        if mark == 'X' :
+    def switchPlayer(self):
+        if self.mark == 'X' :
             return 'O'
         else:
             return 'X'
@@ -80,15 +87,17 @@ class TicTacToe:
             for j in range(3):
                 print(self.board[i][j],'|' , end=' ')
             print('\n')
-    
+
+    def getMark(self):
+        if (True):
+            return 'X'
+        else : 
+            return 'O'
+
+
     def play(self):
         self.createBoard()
-
-        if (0 == 0):
-            mark = 'X'
-        else : 
-            mark = 'O'
-        
+        mark = self.mark
         while True:
             row, col = list(
                 map(int, input("Enter row and column numbers to fix spot: ").split()))
@@ -110,12 +119,5 @@ class TicTacToe:
                 print("draw !")
                 break
 
-            #swapping players
-            mark = self.switchPlayer(mark)
            
-
-
-
-
-tictac = TicTacToe()
-tictac.play()
+           
